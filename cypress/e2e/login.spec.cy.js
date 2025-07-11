@@ -1,6 +1,5 @@
 import userData from '../fixtures/userData.json'
 
-
 describe('Orange HRM Tests', () => {
 
   const selectorsList = {
@@ -44,7 +43,7 @@ describe('Orange HRM Tests', () => {
   
   // esta versão estamos ussando a lista de seletores, para se houver alguma alteração não precissar alterar todo o codigo. facilita pois só alteramos na lista.
   it('Login - Success', () => { 
-    cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
+    cy.visit('/auth/login') // em relação aos comandos anteriores acima, foi configurado o Cypress para ter uma URL Base que fica no arquivo cypress.confing.js, lembrando que sempre que fizer alguma alteração nos arquivos o salvamenti tem que ser individual ou seja cada arquivo do projeto tem que ser salvo para ter efetividade nas mudanças caso contrario vai haver erros
     cy.get(selectorsList.usernameField).type('Admin') // item da linha 4
     cy.get(selectorsList.passwordField).type('admin123') // item da linha 5
     cy.get(selectorsList.loginButton).click() // item da linha 6
@@ -54,7 +53,7 @@ describe('Orange HRM Tests', () => {
     
   })
   it('Login - Fail', () => {
-    cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
+    cy.visit('/auth/login')
     cy.get(selectorsList.usernameField).type(userData.userFail.userneme)  // usando a linha 19 nessa versão estamos usando o mesmo principio para que o automação não quebre, estamos substituindo o comando expecifico por um seletor em lista que vai facilitar em caso de necessidade de mudança de algum dado de entrada
     cy.get(selectorsList.passwordField).type(userData.userFail.password) // usando a linha 20, na realidade uma composição das linhas 12 a 20
     cy.get(selectorsList.loginButton).click()
