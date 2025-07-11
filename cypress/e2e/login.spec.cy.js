@@ -9,6 +9,16 @@ describe('Orange HRM Tests', () => {
     //sectionTitleTopBar: ".oxd-topbar-header-breadcrumb-module", desta maneira funciona porem na linha abaixo fica melhor por mitigar a possibilidade de quebra por mudança inesperada na linguagem/idioma ou na escrita/grafia da pagina
     dashboardGrid: '.orangehrm-dashboard-grid',
     wrongCredentialAlert: "[role='alert']",
+    myInfoButton: "[href='/web/index.php/pim/viewMyDetails']",
+    firstNameField: "[name='firstName']",
+    middleNameField: "[name='middleName']",
+    lastNameField: "[name='lastName']",
+    genericField: ".oxd-input--active",
+    inputButton: ".oxd-date-input",
+    dateCloseButton: ".--close",
+    listPop: ".oxd-select-text--after",
+    submitButton: "[type='submit']",
+    
   }
 
   //const userData = { "foi abstraido para [fixtures / userData.json]"
@@ -22,6 +32,27 @@ describe('Orange HRM Tests', () => {
  //     password: 'test',
  //   }
  // }
+
+ it.only('Login - Success', () => { // o comando ".only" roda somento o bloco ao qual se refere
+    cy.visit('/auth/login')
+    cy.get(selectorsList.usernameField).type(userData.userSuccess.userneme)
+    cy.get(selectorsList.passwordField).type(userData.userSuccess.password)
+    cy.get(selectorsList.loginButton).click()
+    cy.location('pathname').should('equal','/web/index.php/dashboard/index') 
+    cy.get(selectorsList.dashboardGrid)
+    cy.get(selectorsList.myInfoButton).click()
+    cy.get(selectorsList.firstNameField).clear().type('Maria')
+    cy.get(selectorsList.middleNameField).clear().type('Jose')
+    cy.get(selectorsList.lastNameField).clear().type('silva')
+    cy.get(selectorsList.genericField).eq(3).clear().type('99999') 
+    cy.get(selectorsList.genericField).eq(4).clear().type('888')
+    cy.get(selectorsList.genericField).eq(5).clear().type('7777')
+    cy.get(selectorsList.genericField).eq(6).clear().type('2025-30-7')
+    cy.get(selectorsList.dateCloseButton).click()
+    cy.get(selectorsList.listPop).eq(0).click()
+    cy.get(selectorsList.submitButton).eq(0).click()
+
+ })
 
   it('Login - Success', () => { // ao usar ".skip" o comando será ignorado, serve para rodar o teste de forma parcial
     cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')// no comando ".visit()" informamos o endereço da pagina a ser testada
@@ -58,7 +89,7 @@ describe('Orange HRM Tests', () => {
     cy.get(selectorsList.passwordField).type(userData.userFail.password) // usando a linha 20, na realidade uma composição das linhas 12 a 20
     cy.get(selectorsList.loginButton).click()
     cy.get(selectorsList.wrongCredentialAlert) // item da linha 8
+    
+  })
 
-})
-
-})
+ })
