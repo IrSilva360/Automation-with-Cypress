@@ -1,12 +1,28 @@
+import userData from '../fixtures/userData.json'
+
+
 describe('Orange HRM Tests', () => {
 
   const selectorsList = {
     usernameField: "[name='username']",
     passwordField: "[name='password']",
     loginButton: "[type='submit']",
-    sectionTitleTopBar: ".oxd-topbar-header-breadcrumb-module",
+    //sectionTitleTopBar: ".oxd-topbar-header-breadcrumb-module", desta maneira funciona porem na linha abaixo fica melhor por mitigar a possibilidade de quebra por mudança inesperada na linguagem/idioma ou na escrita/grafia da pagina
+    dashboardGrid: '.orangehrm-dashboard-grid',
     wrongCredentialAlert: "[role='alert']",
   }
+
+  //const userData = { "foi abstraido para [fixtures / userData.json]"
+  //  userSuccess: {
+  //    userneme: 'Admin',
+  //    password: 'admin123',
+  //  },
+
+  //  userFail: {
+  //    userneme: 'test',
+ //     password: 'test',
+ //   }
+ // }
 
   it('Login - Success', () => { // ao usar ".skip" o comando será ignorado, serve para rodar o teste de forma parcial
     cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')// no comando ".visit()" informamos o endereço da pagina a ser testada
@@ -33,13 +49,14 @@ describe('Orange HRM Tests', () => {
     cy.get(selectorsList.passwordField).type('admin123') // item da linha 5
     cy.get(selectorsList.loginButton).click() // item da linha 6
     cy.location('pathname').should('equal','/web/index.php/dashboard/index') 
-    cy.get(selectorsList.sectionTitleTopBar).contains('Dashboard') // item da linha 7
+    cy.get(selectorsList.dashboardGrid) // item da linha 8
+    //cy.get(selectorsList.sectionTitleTopBar).contains('Dashboard') esse linha funciona tbm porem a linha superior funciona melhor por ser um item praticamente imutavel, pois já nessa versão o nome pode mudar e quebrar a automação 
     
   })
   it('Login - Fail', () => {
     cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
-    cy.get(selectorsList.usernameField).type('Test')  
-    cy.get(selectorsList.passwordField).type('Test')
+    cy.get(selectorsList.usernameField).type(userData.userFail.userneme)  // usando a linha 19 nessa versão estamos usando o mesmo principio para que o automação não quebre, estamos substituindo o comando expecifico por um seletor em lista que vai facilitar em caso de necessidade de mudança de algum dado de entrada
+    cy.get(selectorsList.passwordField).type(userData.userFail.password) // usando a linha 20, na realidade uma composição das linhas 12 a 20
     cy.get(selectorsList.loginButton).click()
     cy.get(selectorsList.wrongCredentialAlert) // item da linha 8
 
