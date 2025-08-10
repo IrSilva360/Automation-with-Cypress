@@ -1,11 +1,25 @@
 {
     "userSuccess": {
-      "userneme": "Admin",
+      "username": "Admin",
       "password": "admin123"
     },
     "userFail": {
-      "userneme": "test",
+      "username": "test",
       "password": "test"
+    },
+    "fullName": {
+      "fristName": "Maria",
+      "middleName": "Jose",
+      "lastName": "Silva",
+      "nickName": "Maze"
+    },
+    "employee": {
+      "employeeId": "99999",
+      "otherId": "8888",
+      "driverLicenseNumber": "777",
+      "licenseExpiryDate": "2025-12-31"
     }
+
+
 }
-    
+
