@@ -20,7 +20,7 @@ npm install
 npx cypress open
 ```
 
-# Rum the automation by command line
+#Rum the automation by command line
 
 ```bash
 npx cypress rum
