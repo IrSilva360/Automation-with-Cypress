@@ -13,9 +13,11 @@ class MenuPage{
         cy.get(this.selectorsList().myInfoButton).click()
     }
 
-    //accessPerformace() {
-    //    cy.get(this.selectorsList().performanceButton).click()
-    //}
+    accessPerformace() {
+        cy.get(this.selectorsList().performanceButton).click()
+    }    
+
+
 }
 
 export default MenuPage

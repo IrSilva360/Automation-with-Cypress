@@ -57,3 +57,53 @@ Anotações durante o estudo e desenvolvimento da automação
 
   // item da linha 8
 
+ //myInfoPage.fillStatus(userData.);
+    //menuPage.accessPerformace();
+    
+    //cy.get(selectorsList.genericComboBox).eq(2).click();
+    //cy.get(selectorsList.fourthItemComboBox).click();
+    //cy.get(selectorsList.genericField).eq(9).clear().type("888");
+    //cy.get(selectorsList.submitSave).eq(1).click();
+    //cy.get(selectorsList.submitCheckBox).eq(0).click();
+    //cy.get(selectorsList.submitDel).click();
+    //cy.get(selectorsList.submitYesDel).eq(1).click();
+
+
+  it("Login - Success", () => {
+    
+    cy.visit("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login"); 
+    cy.get(":nth-child(2) > .oxd-input-group > :nth-child(2) > .oxd-input").type("Admin"); 
+    cy.get(":nth-child(3) > .oxd-input-group > :nth-child(2) > .oxd-input").type("admin123");
+    cy.get(".oxd-button").click(); 
+    cy.location("pathname").should("equal", "/web/index.php/dashboard/index"); 
+    cy.get(".oxd-topbar-header-breadcrumb-module").contains("Dashboard"); 
+   
+  });
+  
+  it("Login - Fail", () => {
+
+    cy.visit("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+    cy.get("[name='username']").type("Test"); 
+    cy.get("[name='password']").type("Test");
+    cy.get(".oxd-button").click();
+    cy.get("[role='alert']");
+    
+  });
+  
+  it("Login - Success", () => {
+
+    cy.visit("/auth/login"); 
+    cy.get(selectorsList.usernameField).type("Admin"); 
+    cy.get(selectorsList.passwordField).type("admin123"); 
+    cy.get(selectorsList.loginButton).click(); 
+    cy.location("pathname").should("equal", "/web/index.php/dashboard/index");
+    cy.get(selectorsList.dashboardGrid); 
+    
+  }); 
+
+  //
+    //}
+    
+    //cy.get(this.selectorsList().genericField).eq(4).clear().type(nickName);
+
+    //cy.get(':nth-child(5) > :nth-child(1) > :nth-child(1) > .oxd-input-group > :nth-child(2) > .oxd-select-wrapper > .oxd-select-text > .oxd-select-text-input')
