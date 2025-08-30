@@ -4,6 +4,7 @@ Cypress is a JavaScript-based end-to-end testing framework that allows developer
 execute them in a real browser.
 
 ## Installation
+
 '''bash
 npm install
 '''
