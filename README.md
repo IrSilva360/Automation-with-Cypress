@@ -5,9 +5,9 @@ execute them in a real browser.
 
 ## Installation
 
-'''bash
+```bash
 npm install
-'''
+```
 > **NOTE**
 >
 > It is necessary to have **node** installed
@@ -16,12 +16,12 @@ npm install
 
 #You open the Cypress UI
 
-'''bash
+```bash
 npx cypress open
-'''
+```
 
 # Rum the automation by command line
 
-'''bash
+```bash
 npx cypress rum
-'''
+```
