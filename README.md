@@ -14,13 +14,13 @@ npm install
 
 ## Running
 
-#You open the Cypress UI
+### You open the Cypress UI
 
 ```bash
 npx cypress open
 ```
 
-#Rum the automation by command line
+### Rum the automation by command line
 
 ```bash
 npx cypress rum
